@@ -1,2 +1,47 @@
 # SQL-ANALYSIS
 Data analysis project using SQL to perform multi-table joins, salary benchmarking, and conditional formatting (COALESCE/IFNULL) on employee datasets.
+
+# Parks and Recreation: SQL Data Analysis
+
+This repository contains a collection of SQL queries designed to extract and analyze employee data from the **parks_and_recreation** database.
+
+## Assignment Tasks & Solutions
+
+### 1. Employee Directory
+**Goal:** Display each employee's full name, occupation, and department name. Only include employees with a valid department assigned.
+
+```sql
+SELECT s.first_name, s.last_name, s.occupation, p.department_name
+FROM parks_and_recreation.employee_salary as s
+JOIN parks_and_recreation.parks_departments as p
+ON s.dept_id = p.department_id;
+
+
+2. Department Salary Statistics
+Goal: Show the average, minimum, and maximum salary for each department.
+
+SQL
+select department_name, avg (salary), min(salary), max(salary)
+FROM parks_and_recreation.employee_salary 
+JOIN parks_and_recreation.parks_departments 
+ON dept_id = department_id
+ GROUP BY department_name;
+
+3. High-Earner Analysis
+Goal: Display employees whose salary is above the company-wide average.
+
+SQL
+SELECT first_name, last_name, salary
+FROM employee_salary
+WHERE salary > (SELECT AVG(salary) FROM employee_salary);
+
+
+4. Data Cleaning (Handling Missing Records)
+Goal: List all employees and their occupations. If an employee lacks a salary record, display 'Not Assigned'.
+
+SQL
+SELECT 
+ d.first_name, d.last_name, ifnull(s.occupation, 'not assigned') as occupation
+FROM parks_and_recreation.employee_demographics as d
+LEFT JOIN parks_and_recreation.employee_salary as s
+ON d.employee_id = s.employee_id;
