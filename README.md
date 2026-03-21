@@ -16,15 +16,15 @@ FROM parks_and_recreation.employee_salary as s
 JOIN parks_and_recreation.parks_departments as p
 ON s.dept_id = p.department_id;
 
-**### 2. Department Salary Statistics**
-****Goal:**** Display each employee's full name, occupation, and department name. Only include employees with a valid department assigned.
+2. Department Salary Statistics
+Goal: Show the average, minimum, and maximum salary for each department.
 
-```sql
+SQL
 SELECT 
     dept_id, 
     AVG(salary), 
     MIN(salary), 
-    MAX(salary) 
+    MAX(salary)
 FROM employee_salary
 GROUP BY dept_id;
 
