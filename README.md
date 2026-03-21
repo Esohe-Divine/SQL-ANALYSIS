@@ -17,29 +17,29 @@ JOIN parks_and_recreation.parks_departments as p
 ON s.dept_id = p.department_id;
 
 
-2. Department Salary Statistics
-Goal: Show the average, minimum, and maximum salary for each department.
+### 2. Department Salary Statistics
+** Goal:** Show the average, minimum, and maximum salary for each department.
 
-SQL
-select department_name, avg (salary), min(salary), max(salary)
+```sql
+SELECT department_name, avg (salary), min(salary), max(salary)
 FROM parks_and_recreation.employee_salary 
 JOIN parks_and_recreation.parks_departments 
 ON dept_id = department_id
  GROUP BY department_name;
 
-3. High-Earner Analysis
-Goal: Display employees whose salary is above the company-wide average.
+### 3. High-Earner Analysis
+**Goal:** Display employees whose salary is above the company-wide average.
 
-SQL
+```sql
 SELECT first_name, last_name, salary
 FROM employee_salary
 WHERE salary > (SELECT AVG(salary) FROM employee_salary);
 
 
-4. Data Cleaning (Handling Missing Records)
-Goal: List all employees and their occupations. If an employee lacks a salary record, display 'Not Assigned'.
+###4. Data Cleaning (Handling Missing Records)
+**Goal:** List all employees and their occupations. If an employee lacks a salary record, display 'Not Assigned'.
 
-SQL
+```sql
 SELECT 
  d.first_name, d.last_name, ifnull(s.occupation, 'not assigned') as occupation
 FROM parks_and_recreation.employee_demographics as d
