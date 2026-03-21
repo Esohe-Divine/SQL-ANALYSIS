@@ -14,7 +14,8 @@ This repository contains a collection of SQL queries designed to extract and ana
 SELECTs.first_name, s.last_name, s.occupation, p.department_name
 FROM parks_and_recreation.employee_salary as s
 JOIN parks_and_recreation.parks_departments as p
-ON s.dept_id = p.department_id;```
+ON s.dept_id = p.department_id;
+```
 
 ### 2. Department Salary Statistics
 **Goal:** Show the average, minimum, and maximum salary for each department.
@@ -26,7 +27,8 @@ SELECT
     MIN(salary),
     MAX(salary)
 FROM employee_salary
-GROUP BY dept_id;```
+GROUP BY dept_id;
+```
 
 ### 3. High-Earner Analysis
 **Goal:** Display employees whose salary is above the company-wide average.
@@ -34,7 +36,8 @@ GROUP BY dept_id;```
 ```sql
 SELECT first_name, last_name, salary
 FROM employee_salary
-WHERE salary > (SELECT AVG(salary) FROM employee_salary);```
+WHERE salary > (SELECT AVG(salary) FROM employee_salary);
+```
 
 
 ### 4. Data Cleaning (Handling Missing Records)
@@ -47,4 +50,5 @@ SELECT
     IFNULL(s.occupation, 'Not Assigned') AS occupation
 FROM parks_and_recreation.employee_demographics AS d
 LEFT JOIN parks_and_recreation.employee_salary AS s 
-    ON d.employee_id = s.employee_id;```
+    ON d.employee_id = s.employee_id;
+```
