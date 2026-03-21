@@ -16,16 +16,17 @@ FROM parks_and_recreation.employee_salary as s
 JOIN parks_and_recreation.parks_departments as p
 ON s.dept_id = p.department_id;
 
-
-### 2. Department Salary Statistics
-** Goal:** Show the average, minimum, and maximum salary for each department.
+**### 2. Department Salary Statistics**
+****Goal:**** Display each employee's full name, occupation, and department name. Only include employees with a valid department assigned.
 
 ```sql
-SELECT department_name, avg (salary), min(salary), max(salary)
-FROM parks_and_recreation.employee_salary 
-JOIN parks_and_recreation.parks_departments 
-ON dept_id = department_id
- GROUP BY department_name;
+SELECT 
+    dept_id, 
+    AVG(salary), 
+    MIN(salary), 
+    MAX(salary) 
+FROM employee_salary
+GROUP BY dept_id;
 
 ### 3. High-Earner Analysis
 **Goal:** Display employees whose salary is above the company-wide average.
