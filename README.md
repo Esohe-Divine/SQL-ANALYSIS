@@ -27,13 +27,15 @@ ON t2.dept_id = t3.department_id;
 **Goal:** Show the average, minimum, and maximum salary for each department.
 
 ```sql
-SELECT 
-    dept_id,
-    AVG(salary),
-    MIN(salary),
-    MAX(salary)
-FROM employee_salary
-GROUP BY dept_id;
+SELECT
+ department_name,
+ AVG (salary) AS average_salary, 
+  min(salary) AS minimum_salary, 
+ max(salary) AS maximum_salary
+FROM parks_and_recreation.employee_salary 
+JOIN parks_and_recreation.parks_departments 
+ON dept_id = department_id
+ GROUP BY department_id;
 ```
 
 ### 3. High-Earner Analysis
