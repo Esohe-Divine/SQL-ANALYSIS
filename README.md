@@ -11,10 +11,16 @@ This repository contains a collection of SQL queries designed to extract and ana
 **Goal:** Display each employee's full name, occupation, and department name. Only include employees with a valid department assigned.
 
 ```sql
-SELECTs.first_name, s.last_name, s.occupation, p.department_name
-FROM parks_and_recreation.employee_salary as s
-JOIN parks_and_recreation.parks_departments as p
-ON s.dept_id = p.department_id;
+SELECT 
+  t1.first_name, 
+  t1.last_name,
+  t2.occupation,
+  t3.department_name
+FROM parks_and_recreation.employee_demographics AS t1
+JOIN parks_and_recreation.employee_salary AS t2
+ON t1.employee_id = t2.employee_id
+JOIN parks_and_recreation.parks_departments AS t3
+ON t2.dept_id = t3.department_id;
 ```
 
 ### 2. Department Salary Statistics
